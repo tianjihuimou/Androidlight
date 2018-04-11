@@ -1,29 +1,29 @@
- Material Design
+	view体系与自定义view
+1：view的坐标系
+	getX是相对坐标
+	getRawX是绝对坐标。
+2：view的滑动  	1：layout 
+		2：offsetLeftAndright
+ 		3：LayoutParams
+		4:动画
+		5;scroTo
+		6:scroller
+	scroTo与scroBY有区别。
+	((View)getParent()).scrollBy(-offsetX,-offsetY);
+	调用scroller需要重写computeScroll()因为draw会调用这个方法。
+3 view事件的分发机制
+	activity--->viewGroup--->view
+  view 工作流程
+	measure ---> layout--->draw
+	specMode 有AT_MOST和EXACTLY 那个就不考虑了。
+  view的measure流程
 
-	1.应用Tablayout实现网易滑动效果。
-	   布局是一个
-		APPbarlayout  1:toolbar
-			      2:Tablayout 其中tabMode设置为scrollable.
-
-		viewpager
-
-	实现步骤：创建一个fragment list  fragments.
-		  创建一个FragmentAdapter
-
-		  关联 mViewPager.setAdapter(mFragmentAdapteradapter);
-		  关联 mTabLayout.setupWithViewPager(mViewPager);
-		  关联  mTabLayout.setTabsFromPagerAdapter(mFragmentAdapteradapter);
-	这样就实现了。
-
-	2：实现抽屉界面
-
-		布局分析：
-			整个是一个DrawerLayout
-			尾部添加一个NavigationView
-			NavigationView包含几个重要属性
-			android:layout_gravity="start"
-        		app:headerLayout="@layout/navigation_header"
-        		app:menu="@menu/drawer_view"
-		代码实现：
-			与上面一样。
-	3：coordinatorLayout 可以实现toolbar的隐藏和折叠。
+  viewgroup 的measure的流程
+  
+4 自定义viewGroup
+ 	1继承viewGroup
+	2实现onlayout
+	3处理滑动冲突
+	4 弹性滑动到其他界面 Scroller
+	5快速滑动到其他界面VelocityTracker
+	6再次触摸屏幕阻止界面继续滑动。
